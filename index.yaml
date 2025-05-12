@@ -1,0 +1,2 @@
+igm:
+  $ref: "./configs/igm/index.yaml"
