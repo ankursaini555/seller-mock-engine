@@ -1,20 +1,18 @@
+import axios from "axios";
 import express from "express";
-const router = express.Router();
+import fs from "fs";
 import { v4 as uuidv4 } from "uuid";
-import { onRequest } from "../services/service";
+import { healthCheckAPI } from "../controller/health.controller";
+import { configLoader } from "../utils/configs_new";
+import log from "../utils/logger";
 import { extractPath } from "../utils/mapper/buildPayload";
 import {
   getCache,
-  insertSession,
   handleRequestForJsonMapper,
+  insertSession,
 } from "../utils/mapper/utils";
-import { configLoader } from "../utils/configs_new";
-import log from "../utils/logger";
+const router = express.Router();
 const logger = log();
-import axios from "axios";
-import { exec } from "child_process";
-import fs from "fs";
-import { healthCheckAPI } from "../controller/health.controller";
 
 // transaction id fetch krta h || data
 router.get("/cache", async (req, res) => {
@@ -619,10 +617,7 @@ router.get("/health", healthCheckAPI);
 
 // self health check route
 router.get("/health-self", (req, res) => {
-  res.status(200).send({
-    status: "Service is running",
-    timestamp: new Date().toISOString(),
-  });
+  res.status(200).send(`STATUS:UP,TIMESTAMP:${new Date().toISOString()}`);
 });
 
 // router.all("/*", (req, res) => {
