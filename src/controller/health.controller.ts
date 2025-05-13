@@ -7,16 +7,16 @@ export const healthCheckAPI = async (req: Request, res: Response) => {
     const currentService = {
       name: "Seller Mock Engine",
       url:
-        process.env.DEPLOYED_URL + "/health-test" ||
-        "http://localhost:7202/health-test", // check current service by session api route
+        process.env.DEPLOYED_URL + "/health-self" ||
+        "http://localhost:7202/health-self", // check current service by session api route
     };
 
     const dependencyServices = [
       {
         name: "Protocol Server Engine",
         url:
-          process.env.PROTOCOL_SERVER_BASE_URL + "health-test" ||
-          "http://localhost:7201/health-test",
+          process.env.PROTOCOL_SERVER_BASE_URL + "health-self" ||
+          "http://localhost:7201/health-self",
       },
       {
         name: "Mock UI",

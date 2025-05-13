@@ -617,8 +617,8 @@ router.get("/restart", (req, res) => {
 // route for check halth of the service
 router.get("/health", healthCheckAPI);
 
-// test the health of the service route
-router.get("/health-test", (req, res) => {
+// self health check route
+router.get("/health-self", (req, res) => {
   res.status(200).send({
     status: "Service is running",
     timestamp: new Date().toISOString(),
